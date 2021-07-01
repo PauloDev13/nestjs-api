@@ -28,7 +28,7 @@ export class ProductsService {
 
   async update(id: number, updateProductDto: UpdateProductDto) {
     const updateResult = await this.productsRepo.update(id, updateProductDto);
-    if (updateResult.affected) {
+    if (!updateResult.affected) {
       throw new EntityNotFoundError(Product, id);
     }
     return this.productsRepo.findOne(id);
