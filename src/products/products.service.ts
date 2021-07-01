@@ -36,7 +36,7 @@ export class ProductsService {
 
   async remove(id: number) {
     const deleteResult = await this.productsRepo.delete(id);
-    if (deleteResult.affected) {
+    if (!deleteResult.affected) {
       throw new EntityNotFoundError(Product, id);
     }
   }
